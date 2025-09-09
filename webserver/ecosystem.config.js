@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
       {
-        name: "100days",
+        name: "networked-media",
         script: "./webserver/server.js",
         env: {
           PORT: 3002,
