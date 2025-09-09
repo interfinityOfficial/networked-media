@@ -2,7 +2,7 @@ module.exports = {
     apps: [
       {
         name: "networked-media",
-        script: "./webserver/server.js",
+        script: "./server.js",
         env: {
           PORT: 3002,
           NODE_ENV: "development"
