@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/project1/styles.css" />
+    <title>Mail 1</title>
+  </head>
+  <body>
+    <main>
+      <div class="letter">
+        <h3 class="sender-address" style="margin-top: 30px">
+          Charles Zhang<br />
+          167.71.167.224<br />
+          Clifton<br />
+          United States of America<br />
+          The Internet
+        </h3>
+        <h3 class="recipient-address" style="margin-top: 60px">
+          You<br />
+          <span id="ip">127.0.0.1</span><br />
+          <span id="city">New York City</span><br />
+          <span id="country">United States of America</span><br />
+          The Internet
+        </h3>
+        <p class="letter-content" style="margin-top: 60px; margin-bottom: 90px">
+          Hello there,<br /><br />
+          I'm reaching the end of my trip, but I just couldn't have enough of
+          Iceland. It's so vast, despite being a small island. It's so
+          unearthly, despite being the closest European country to the US. It's
+          so unique, despite its flag 🇮🇸 being quite unrecognizable among the
+          nordic countries.
+          <br /><br />
+          One of my favorites in Iceland is the black sand beaches among its southern
+          cost. There's this beach just next to a cliff on which lives thousands
+          of birds, seagulls and also puffins—a really cute bird (almost) unique
+          to Iceland. The beach was incredible and wide, but looking up on the
+          steep cliff I feel so small, even to the birds.
+          <br /><br />
+          Best,<br />
+          Charles Zhang
+        </p>
+      </div>
+      <div class="divider"></div>
+      <div class="links">
+        <a
+          class="link"
+          href="/project1/mail/4/"
+          style="padding-top: 40px; padding-bottom: 40px; text-align: left"
+          >Open Previous Envelope</a
+        >
+        <a
+          class="link"
+          href="/project1/mailbox/"
+          style="padding-top: 40px; padding-bottom: 40px; text-align: right"
+          >Back to Mailbox</a
+        >
+      </div>
+    </main>
+
+    <script>
+      fetch("/api/ip/")
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("ip").textContent = data.ip;
+          document.getElementById("city").textContent = data.city;
+          document.getElementById("country").textContent = data.country;
+        })
+        .catch((error) => {
+          console.error("Error fetching IP address:", error);
+        });
+
+      localStorage.setItem("read_5", "true");
+    </script>
+  </body>
+</html>

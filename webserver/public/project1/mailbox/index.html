@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/project1/styles.css" />
+    <title>Your Mailbox</title>
+  </head>
+  <body>
+    <main>
+      <h1 class="title" id="title" style="margin-top: 60px; margin-bottom: 60px">
+        You have <span id="unopened">5</span>/5 unopened Envelopes
+      </h1>
+      <div class="spacer"></div>
+      <div class="mail-shapes">
+        <a class="mail-shape" id="mail-1" href="/project1/mail/1/">
+          <div class="lid-1"></div>
+          <div class="lid-2"></div>
+          <div class="lid-3"></div>
+        </a>
+        <a class="mail-shape" id="mail-2" href="/project1/mail/2/">
+          <div class="lid-1"></div>
+          <div class="lid-2"></div>
+          <div class="lid-3"></div>
+        </a>
+        <a class="mail-shape" id="mail-3" href="/project1/mail/3/">
+          <div class="lid-1"></div>
+          <div class="lid-2"></div>
+          <div class="lid-3"></div>
+        </a>
+        <a class="mail-shape" id="mail-4" href="/project1/mail/4/">
+          <div class="lid-1"></div>
+          <div class="lid-2"></div>
+          <div class="lid-3"></div>
+        </a>
+        <a class="mail-shape" id="mail-5" href="/project1/mail/5/">
+          <div class="lid-1"></div>
+          <div class="lid-2"></div>
+          <div class="lid-3"></div>
+        </a>
+      </div>
+      <div class="divider"></div>
+      <div class="links">
+        <a
+          class="link"
+          href="/project1/"
+          style="padding-top: 40px; padding-bottom: 40px; text-align: left"
+          >Close Mailbox</a
+        >
+        <a
+          class="link"
+          id="next-envelope"
+          href="/project1/mail/1/"
+          style="padding-top: 40px; padding-bottom: 40px; text-align: right"
+          >Open Next Envelope</a
+        >
+      </div>
+    </main>
+
+    <script>
+      let unopened = 0;
+      let nextEnvelope = null;
+      for (let i = 1; i <= 5; i++) {
+        const read = localStorage.getItem(`read_${i}`);
+        if (read) {
+          document.getElementById(`mail-${i}`).classList.add("mail-opened");
+        } else {
+          unopened++;
+          document.getElementById(`mail-${i}`).classList.remove("mail-opened");
+          if (nextEnvelope === null) {
+            nextEnvelope = i;
+          }
+        }
+      }
+      if (nextEnvelope === null) {
+        nextEnvelope = 1;
+      }
+      document.getElementById("unopened").textContent = unopened;
+      if (unopened === 0) {
+        document.getElementById("title").textContent = "You have opened all Envelopes";
+        document.getElementById("next-envelope").textContent = "Go Over Again";
+      }
+      document.getElementById("next-envelope").href = `/project1/mail/${nextEnvelope}/`;
+    </script>
+  </body>
+</html>

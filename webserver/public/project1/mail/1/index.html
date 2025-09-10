@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/project1/styles.css" />
+    <title>Envelope 1</title>
+  </head>
+  <body>
+    <main>
+      <div class="letter">
+        <h3 class="sender-address" style="margin-top: 30px">
+          Charles Zhang<br />
+          167.71.167.224<br />
+          Clifton<br />
+          United States of America<br />
+          The Internet
+        </h3>
+        <h3 class="recipient-address" style="margin-top: 60px">
+          You<br />
+          <span id="ip">127.0.0.1</span><br />
+          <span id="city">New York City</span><br />
+          <span id="country">United States of America</span><br />
+          The Internet
+        </h3>
+        <p class="letter-content" style="margin-top: 60px; margin-bottom: 90px">
+          Hi there,<br /><br />
+          Just landed this morning, the air was so sharp and cold, the sky
+          cloudy, and the Airport is really far from the city. <br /><br />
+          We rented a car and drove towards Reykjavik. Glaring through the
+          window I saw the dark fields of lava stones, there were hardly any
+          trees. This place simply feels like another planet. <br /><br />
+          Right now everything is a bit unfamiliar, but I'm excited for
+          tomorrow. <br /><br />
+
+          Best,<br />
+          Charles Zhang
+        </p>
+      </div>
+      <div class="divider"></div>
+      <div class="links">
+        <a
+          class="link"
+          href="/project1/mailbox/"
+          style="padding-top: 40px; padding-bottom: 40px; text-align: left"
+          >Back to Mailbox</a
+        >
+        <a
+          class="link"
+          href="/project1/mail/2/"
+          style="padding-top: 40px; padding-bottom: 40px; text-align: right"
+          >Open Next Envelope</a
+        >
+      </div>
+    </main>
+
+    <script>
+      fetch("/api/ip/")
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("ip").textContent = data.ip;
+          document.getElementById("city").textContent = data.city;
+          document.getElementById("country").textContent = data.country;
+        })
+        .catch((error) => {
+          console.error("Error fetching IP address:", error);
+        });
+
+      localStorage.setItem("read_1", "true");
+    </script>
+  </body>
+</html>
