@@ -1,4 +1,4 @@
 node_modules/
 .DS_Store
 .env
-.BIN
+webserver/public/assets/IP2LOCATION-LITE-DB3.IPV6.BIN
