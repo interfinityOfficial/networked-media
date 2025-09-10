@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/project1/styles.css" />
-    <title>Your Mailbox</title>
+    <link rel="icon" href="/project1/assets/icon.png" />
+    <title>Your Mailbox (5/5)</title>
   </head>
   <body>
     <main>
@@ -81,6 +82,7 @@
         document.getElementById("next-envelope").textContent = "Go Over Again";
       }
       document.getElementById("next-envelope").href = `/project1/mail/${nextEnvelope}/`;
+      document.title = `Your Mailbox (${unopened}/5)`;
     </script>
   </body>
 </html>
