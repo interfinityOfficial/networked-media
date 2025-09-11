@@ -12,8 +12,8 @@
         <div class="project-container">
           <a href="/project1/" class="project project-1">
             <div class="project-title-bar">
-                <div class="project-number">P1</div>
-                <div class="project-title">You've Got Mail</div>
+              <div class="project-number">P1</div>
+              <div class="project-title">You've Got Mail</div>
               <svg
                 class="project-open-icon"
                 xmlns="http://www.w3.org/2000/svg"
@@ -50,11 +50,9 @@
                 </g>
               </svg>
             </div>
-            <div
-              class="project-image"
-            ></div>
-          </div>
-        </a>
+            <div class="project-image"></div>
+          </a>
+        </div>
 
         <div class="project-container">
           <a href="/" class="project project-3">
@@ -73,9 +71,7 @@
                 </g>
               </svg>
             </div>
-            <div
-              class="project-image"
-            ></div>
+            <div class="project-image"></div>
           </a>
         </div>
 
@@ -96,11 +92,9 @@
                 </g>
               </svg>
             </div>
-            <div
-              class="project-image"
-            ></div>
-          </div>
-        </a>
+            <div class="project-image"></div>
+          </a>
+        </div>
 
         <div class="project-container project-container-last">
           <a href="/" class="project project-5">
@@ -119,15 +113,20 @@
                 </g>
               </svg>
             </div>
-            <div
-              class="project-image"
-            ></div>
+            <div class="project-image"></div>
           </a>
         </div>
       </div>
 
       <div class="bottom-section">
-
+        <div class="bottom-text">
+          Networked Media Projects by
+          <span class="bottom-no-break">Charles Zhang</span>
+        </div>
+        <div class="bottom-text">
+          Check out my blog at
+          <a href="https://inthecreat.ing" class="bottom-link">inthecreat.ing</a>
+        </div>
       </div>
     </main>
 
@@ -276,6 +275,35 @@
         width: min(max(1.2vw, 9px), 12px);
         padding-right: min(max(0.4vw, 3px), 4px);
         fill: #000;
+      }
+
+      .bottom-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
+      .bottom-text {
+        font-family: "SFMono", sans-serif;
+        font-weight: 400;
+        font-size: min(max(1.6vw, 14px), 16px);
+        color: #000;
+        text-align: center;
+      }
+
+      .bottom-link {
+        font-family: "SFMono", sans-serif;
+        font-weight: 400;
+        font-size: min(max(1.6vw, 14px), 18px);
+        color: #000;
+      }
+
+      .bottom-no-break {
+        white-space: nowrap;
       }
     </style>
   </body>
