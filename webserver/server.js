@@ -13,6 +13,9 @@ app.use(express.static('public'));
 let ip2location = new IP2Location();
 ip2location.open("public/assets/IP2LOCATION-LITE-DB3.IPV6.BIN");
 
+// Let Express trust the Nginx proxy
+app.set('trust proxy', true);
+
 // Get IP Address API endpoint
 app.get('/api/ip/', (req, res) => {
   let ip =
