@@ -1,10 +1,10 @@
 // Importing the libraries
-let express = require('express');
-const {IP2Location} = require("ip2location-nodejs");
+const express = require('express');
+const { IP2Location } = require("ip2location-nodejs");
 
-// Create the web server on port 3002
+// Create the web server on port 3003
 let app = express();
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3002;
 
 // Tell the web server to use the "public" folder for serving static files (html, css, javascript, media.)
 app.use(express.static('public'));
@@ -51,7 +51,7 @@ app.get('/api/ip/', (req, res) => {
     city = data.city;
     country = data.countryLong;
   }
-  
+
 
   // Remove port if present
   if (ip.includes(":")) {
@@ -71,8 +71,16 @@ app.get('/api/ip/', (req, res) => {
   });
 });
 
-// And finally start the server. We start the server on port 80, which is the default port for http.
-// If you want to learn more about ports, read this: https://www.cloudflare.com/learning/network-layer/what-is-a-computer-port/
+app.get('/project2/', (req, res) => {
+  const queryParams = req.query;
+
+  // Access individual parameters
+  const id = queryParams.id;
+  const name = queryParams.name;
+
+  res.send(`ID: ${id}, Name: ${name}`);
+});
+
 app.listen(PORT, function () {
   console.log('Example app listening on port ' + PORT + '!')
 });
