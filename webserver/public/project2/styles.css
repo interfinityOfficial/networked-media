@@ -84,6 +84,16 @@
   --mac-beige-dark: 206, 195, 166;
 }
 
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+  -webkit-scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 body {
   background-color: #fff;
   overflow: hidden;
