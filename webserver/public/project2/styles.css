@@ -354,7 +354,7 @@ body {
   transform: translate(-50%, -50%);
   width: 50%;
   background-color: #fff;
-  border: min(max(0.75vw, 4px), 6px) solid #000;
+  border: min(max(1.5vw, 4px), 6px) solid #000;
   transition: top 0.5s ease-in-out;
 
   z-index: 2;
