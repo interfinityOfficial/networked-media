@@ -299,7 +299,7 @@ body {
 }
 
 .water-clock-enclosure {
-  position: absolute;
+  position: fixed;
   left: 50%;
   bottom: 0%;
   transform: translate(-50%, 0%);
@@ -538,7 +538,10 @@ body {
 }
 
 .candle-clock-candle {
-  position: relative;
+  position: fixed;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
   width: min(max(13.33vw, 60px), 80px);
   height: calc(85vh * var(--candle-clock-height));
   display: flex;
