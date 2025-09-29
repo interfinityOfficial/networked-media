@@ -333,6 +333,7 @@ body {
   transform: translate(-50%, 0%);
   width: min(90vw, 45vh);
   height: calc(min(80vw, 40vh) * 1.4);
+  border-radius: min(max(3vw, 8px), 12px);
   border-top: min(max(1.5vw, 4px), 6px) solid rgba(220, 220, 220, 1);
   border-left: min(max(1.5vw, 4px), 6px) solid rgba(220, 220, 220, 1);
   border-right: min(max(1.5vw, 4px), 6px) solid rgba(220, 220, 220, 1);
@@ -394,6 +395,7 @@ body {
   transform: translate(-50%, -50%);
   width: 50%;
   background-color: #fff;
+  border-radius: min(max(3vw, 8px), 12px);
   border: min(max(1.5vw, 4px), 6px) solid #000;
   transition: top 0.5s ease-in-out;
 
@@ -520,6 +522,7 @@ body {
   width: min(20vw, 10vh);
   height: min(60vw, 30vh);
   background-color: transparent;
+  border-radius: min(max(3vw, 8px), 12px);
   border: min(max(1.5vw, 4px), 6px) solid #000;
   display: flex;
 }
