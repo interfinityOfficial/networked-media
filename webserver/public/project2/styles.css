@@ -512,6 +512,10 @@ body {
   align-items: center;
 }
 
+.show-candle-clock {
+  background-color: #000;
+}
+
 .show-candle-clock .candle-clock {
   display: flex;
 }
@@ -1088,6 +1092,10 @@ body {
   align-items: center;
 }
 
+.show-nixie-clock {
+  background-color: #000;
+}
+
 .show-nixie-clock .nixie-clock {
   display: flex;
 }
@@ -1227,6 +1235,10 @@ body {
   display: none;
   justify-content: center;
   align-items: center;
+}
+
+.show-led-clock {
+  background-color: #000;
 }
 
 .show-led-clock .led-clock {
@@ -1692,6 +1704,10 @@ body {
   display: none;
   justify-content: center;
   align-items: center;
+}
+
+.show-quantum-clock {
+  background-color: #000;
 }
 
 .show-quantum-clock .quantum-clock {
