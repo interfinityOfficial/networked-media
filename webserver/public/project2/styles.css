@@ -1581,6 +1581,7 @@ body {
   height: calc(
     100% - min(max(0.75vw, 1.5px), 3px) * 2 - min(max(1.5vw, 3px), 6px) * 2
   );
+  margin: min(max(0.75vw, 1.5px), 3px);
   border-radius: calc(
     min(max(10vw, 25px), 40px) - min(max(0.75vw, 1.5px), 3px) * 2
   );
