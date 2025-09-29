@@ -18,8 +18,8 @@
 
 @font-face {
   font-family: "NewYork";
-  src: url("/assets/NewYork-Bold.woff2") format("woff2");
-  font-weight: 700;
+  src: url("/assets/NewYork-SemiBold.woff2") format("woff2");
+  font-weight: 600;
 }
 
 @font-face {
@@ -70,7 +70,7 @@
   --water-clock-height: 100%;
   --candle-clock-height: 1;
   --mechanical-clock-angle: -90deg;
-  --pendulum-clock-hour-angle: 30deg;
+  --pendulum-clock-hour-angle: -90deg;
   --pendulum-clock-minute-angle: -90deg;
 
   /* --sundial-brown: 237, 208, 168;
@@ -295,7 +295,7 @@ body {
   overflow: visible;
   font-family: "NewYork";
   font-size: min(max(6.67vw, 16px), 40px);
-  font-weight: 400;
+  font-weight: 600;
   color: #000;
   display: flex;
   justify-content: center;
@@ -992,6 +992,22 @@ body {
   stroke: #000;
   stroke-width: calc(var(--ratio) * min(max(0.5vw, 1.5px), 3px));
   fill: none;
+
+  animation: center-gear-rotation-animation 120s infinite linear;
+}
+
+@keyframes center-gear-rotation-animation {
+  0% {
+    rotate: 0deg;
+  }
+
+  50% {
+    rotate: 360deg;
+  }
+
+  100% {
+    rotate: 0deg;
+  }
 }
 
 .mechanical-clock-center::before {
@@ -1065,6 +1081,22 @@ body {
   top: calc(50% + min(90vw, 60vh) * 0.4);
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
+
+  animation: bottom-gear-rotation-animation 120s infinite linear;
+}
+
+@keyframes bottom-gear-rotation-animation {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1) rotate(-360deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
 }
 
 /* Pendulum Clock */

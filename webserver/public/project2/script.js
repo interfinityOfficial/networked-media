@@ -82,6 +82,32 @@ window.onload = () => {
     const params = new URLSearchParams(window.location.search);
     const time = params.get("time");
     const clock = params.get("clock");
+    const mode = params.get("mode");
+    let clickClock = "1"
+
+    if (clock && clock >= 1 && clock <= 10 && mode && (mode == "click" || (mode.substring(0, 8) == "speedrun" && Number(mode.substring(8, 10)) >= 1 && Number(mode.substring(8, 10)) <= 60))) {
+        clickClock = clock;
+    }
+
+    if (mode && mode == "click") {
+        document.body.onclick = () => {
+            let newClock = Number(clickClock) + 1;
+            if (newClock > 10) {
+                newClock -= 10;
+            }
+            clickClock = newClock.toString();
+            setClock(clickClock);
+        };
+    } else if (mode && (mode.substring(0, 8) == "speedrun" && Number(mode.substring(8, 10)) >= 1 && Number(mode.substring(8, 10)) <= 60)) {
+        setInterval(() => {
+            let newClock = Number(clickClock) + 1;
+            if (newClock > 10) {
+                newClock -= 10;
+            }
+            clickClock = newClock.toString();
+            setClock(clickClock);
+        }, Number(mode.substring(8, 10)) * 1000);
+    }
 
     if (time && time.length == 6) {
         const hoursString = time.substring(0, 2);
@@ -99,38 +125,10 @@ window.onload = () => {
     setInterval(() => updateClock(), 1000);
 
     function updateClock() {
-        if (clock) {
-            if (clock == "1") {
-                // Sundial
-                updateSundial(hours, minutes, seconds);
-            } else if (clock == "2") {
-                // Water Clock
-                updateWaterClock(hours, minutes, seconds);
-            } else if (clock == "3") {
-                // Candle Clock
-                updateCandleClock(hours, minutes, seconds);
-            } else if (clock == "4") {
-                // Mechanical Clock
-                updateMechanicalClock(hours, minutes, seconds);
-            } else if (clock == "5") {
-                // Pendulum Clock
-                updatePendulumClock(hours, minutes, seconds);
-            } else if (clock == "6") {
-                // Nixie Clock
-                updateNixieClock(hours, minutes, seconds);
-            } else if (clock == "7") {
-                // LED Clock
-                updateLEDClock(hours, minutes, seconds);
-            } else if (clock == "8") {
-                // GUI Clock
-                updateGUIClock(hours, minutes, seconds);
-            } else if (clock == "9") {
-                // Data Clock
-                updateDataClock(hours, minutes, seconds);
-            } else {
-                // Quantum Clock
-                updateQuantumClock(hours, minutes, seconds);
-            }
+        if (mode && (mode == "click" || (mode.substring(0, 8) == "speedrun" && Number(mode.substring(8, 10)) >= 1 && Number(mode.substring(8, 10)) <= 60))) {
+            setClock(clickClock);
+        } else if (clock) {
+            setClock(clock);
         } else if (hours >= 0 && hours < 4) {
             // Sundial
             updateSundial(hours, minutes, seconds);
@@ -182,6 +180,41 @@ window.onload = () => {
                     hours = 0;
                 }
             }
+        }
+    }
+
+    // Set Clock Function
+    function setClock(clock) {
+        if (clock == "1") {
+            // Sundial
+            updateSundial(hours, minutes, seconds);
+        } else if (clock == "2") {
+            // Water Clock
+            updateWaterClock(hours, minutes, seconds);
+        } else if (clock == "3") {
+            // Candle Clock
+            updateCandleClock(hours, minutes, seconds);
+        } else if (clock == "4") {
+            // Mechanical Clock
+            updateMechanicalClock(hours, minutes, seconds);
+        } else if (clock == "5") {
+            // Pendulum Clock
+            updatePendulumClock(hours, minutes, seconds);
+        } else if (clock == "6") {
+            // Nixie Clock
+            updateNixieClock(hours, minutes, seconds);
+        } else if (clock == "7") {
+            // LED Clock
+            updateLEDClock(hours, minutes, seconds);
+        } else if (clock == "8") {
+            // GUI Clock
+            updateGUIClock(hours, minutes, seconds);
+        } else if (clock == "9") {
+            // Data Clock
+            updateDataClock(hours, minutes, seconds);
+        } else {
+            // Quantum Clock
+            updateQuantumClock(hours, minutes, seconds);
         }
     }
 
