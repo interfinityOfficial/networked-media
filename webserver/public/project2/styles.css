@@ -79,7 +79,8 @@
   --sundial-brown-shadow: 68, 53, 32; */
 
   --water-blue: 70, 131, 255;
-  --nixie-orange: 255, 145, 0;
+  --nixie-orange: 255, 184, 110;
+  --nixie-red: 222, 80, 35;
   --mac-beige: 230, 219, 190;
   --mac-beige-dark: 206, 195, 166;
 }
@@ -103,6 +104,8 @@ body {
   width: 100vw;
   min-height: 100vh;
   margin: 0;
+
+  transition: background-color 0.5s ease-in-out;
 }
 
 /* Sundial */
@@ -112,14 +115,24 @@ body {
   left: 0%;
   width: 100vw;
   height: 100vh;
-  background-color: #fff;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
+  scale: 0.8;
+  opacity: 0;
+  pointer-events: none;
+  transition: scale 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.show-sundial {
+  background-color: #fff;
 }
 
 .show-sundial .sundial {
   display: flex;
+  scale: 1;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .sundial-base {
@@ -298,14 +311,19 @@ body {
   left: 0%;
   width: 100vw;
   height: 100vh;
-  background-color: #fff;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: flex-end;
+
+  pointer-events: none;
+}
+
+.show-water-clock {
+  background-color: #fff;
 }
 
 .show-water-clock .water-clock {
-  display: flex;
+  pointer-events: auto;
 }
 
 .water-clock-enclosure {
@@ -318,6 +336,16 @@ body {
   border-top: min(max(1.5vw, 4px), 6px) solid rgba(220, 220, 220, 1);
   border-left: min(max(1.5vw, 4px), 6px) solid rgba(220, 220, 220, 1);
   border-right: min(max(1.5vw, 4px), 6px) solid rgba(220, 220, 220, 1);
+  scale: 1.2;
+  opacity: 0;
+  pointer-events: none;
+  transition: scale 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.show-water-clock .water-clock-enclosure {
+  scale: 1;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .water-clock-left {
@@ -330,8 +358,16 @@ body {
   border-left: min(max(1.5vw, 4px), 6px) solid #000;
   border-right: min(max(1.5vw, 4px), 6px) solid #000;
   border-bottom: min(max(1.5vw, 4px), 6px) solid #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
 
   z-index: 2;
+}
+
+.show-water-clock .water-clock-left {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .water-clock-left::after {
@@ -340,16 +376,20 @@ body {
   bottom: 0%;
   left: 0%;
   width: 100%;
-  height: calc(var(--water-clock-height) * 0.75 + 25%);
+  height: 0%;
   background-color: rgba(var(--water-blue), 1);
   transition: height 0.5s ease-in-out;
 
   z-index: 1;
 }
 
+.show-water-clock .water-clock-left::after {
+  height: calc(var(--water-clock-height) * 0.75 + 25%);
+}
+
 .water-clock-floating-base {
   position: absolute;
-  top: calc(75% - var(--water-clock-height) * 0.75);
+  top: 0%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
@@ -358,6 +398,10 @@ body {
   transition: top 0.5s ease-in-out;
 
   z-index: 2;
+}
+
+.show-water-clock .water-clock-floating-base {
+  top: calc(75% - var(--water-clock-height) * 0.75);
 }
 
 .water-clock-floating-base-inner {
@@ -408,6 +452,12 @@ body {
   border-top: min(max(1.5vw, 4px), 6px) solid #000;
   border-bottom: min(max(1.5vw, 4px), 6px) solid #000;
   background-color: rgba(var(--water-blue), 1);
+  translate: -100% 0%;
+  transition: translate 0.5s ease-in-out;
+}
+
+.show-water-clock .water-clock-pipe {
+  translate: 0% 0%;
 }
 
 .water-clock-water-drop {
@@ -415,7 +465,8 @@ body {
   top: 0%;
   left: 100%;
   width: min(max(1.5vw, 4px), 6px);
-  height: calc(calc(min(80vw, 40vh) * 1.2) + min(max(1.5vw, 4px), 6px));
+  height: 0%;
+  opacity: 0;
 
   background-image: repeating-linear-gradient(
     to bottom,
@@ -426,7 +477,13 @@ body {
   );
   background-size: 100% min(max(9vw, 24px), 36px);
 
+  transition: height 1.5s ease-in-out, opacity 0.5s ease-in-out;
   animation: water-drop-animation 20s linear infinite;
+}
+
+.show-water-clock .water-clock-water-drop {
+  height: calc(calc(min(80vw, 40vh) * 1.2) + min(max(1.5vw, 4px), 6px));
+  opacity: 1;
 }
 
 @keyframes water-drop-animation {
@@ -440,11 +497,18 @@ body {
 
 .water-clock-right {
   position: fixed;
-  bottom: 0%;
+  bottom: -100%;
   left: 50%;
   width: min(40vw, 20vh);
   height: 100vh;
   background-color: transparent;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, bottom 0.5s ease-in-out;
+}
+
+.show-water-clock .water-clock-right {
+  bottom: 0%;
+  opacity: 1;
 }
 
 .water-clock-right-cylinder {
@@ -532,11 +596,11 @@ body {
   left: 0%;
   width: 100vw;
   height: 100vh;
-  background-color: #000;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  pointer-events: none;
 }
 
 .show-candle-clock {
@@ -544,7 +608,7 @@ body {
 }
 
 .show-candle-clock .candle-clock {
-  display: flex;
+  pointer-events: auto;
 }
 
 .candle-clock-candle {
@@ -553,9 +617,13 @@ body {
   left: 50%;
   transform: translate(-50%, 0%);
   width: min(max(13.33vw, 60px), 80px);
-  height: calc(85vh * var(--candle-clock-height));
+  height: 0%;
   display: flex;
   transition: height 0.5s ease-in-out;
+}
+
+.show-candle-clock .candle-clock-candle {
+  height: calc(85vh * var(--candle-clock-height));
 }
 
 .candle-clock-candle-body {
@@ -579,8 +647,18 @@ body {
   display: flex;
   transform-origin: center bottom;
   animation: candle-flame-animation 4s ease-in-out infinite;
+  scale: 0.5;
+  opacity: 0;
+  transition: scale 0.5s ease-in-out, opacity 0.5s ease-in-out;
 
   z-index: 1;
+}
+
+.show-candle-clock .candle-clock-candle-flame-1-container,
+.show-candle-clock .candle-clock-candle-flame-2-container,
+.show-candle-clock .candle-clock-candle-flame-3-container {
+  scale: 1;
+  opacity: 1;
 }
 
 .candle-clock-candle-flame-1,
@@ -634,9 +712,17 @@ body {
   aspect-ratio: 3/4;
   max-width: 95vw;
   display: flex;
-  background-color: #000;
+  background-color: transparent;
   border-left: min(max(0.5vw, 1.5px), 3px) solid #fff;
   border-right: min(max(0.5vw, 1.5px), 3px) solid #fff;
+
+  opacity: 0;
+  transition: background-color 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.show-candle-clock .candle-clock-board {
+  background-color: #000;
+  opacity: 1;
 }
 
 .candle-clock-marks {
@@ -667,14 +753,23 @@ body {
   position: absolute;
   bottom: 0%;
   right: 0%;
-  width: 30%;
+  width: 0%;
   height: min(max(0.25vw, 1px), 1.5px);
   background-color: #fff;
+  transition: width 0.5s ease-in-out;
+}
+
+.show-candle-clock .candle-clock-mark::before {
+  width: 30%;
 }
 
 .candle-clock-marks::before {
   bottom: 100%;
   right: 5%;
+  width: 0%;
+}
+
+.show-candle-clock .candle-clock-marks::before {
   width: 27%;
 }
 
@@ -686,26 +781,37 @@ body {
   transform: translate(-50%, -50%);
   width: 100vw;
   height: min(100vh, 150vw);
+  display: flex;
+  pointer-events: none;
+}
+
+.show-mechanical-clock {
   background-color: #fff;
-  display: none;
 }
 
 .show-mechanical-clock .mechanical-clock {
-  display: flex;
+  pointer-events: auto;
 }
 
 .mechanical-clock-face {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.8);
   width: min(90vw, 60vh);
   aspect-ratio: 1/1;
   border-radius: 50%;
   border: min(max(0.5vw, 1.5px), 3px) solid #000;
   background-color: #fff;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 
   z-index: 2;
+}
+
+.show-mechanical-clock .mechanical-clock-face {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .mechanical-clock-face-border {
@@ -713,14 +819,21 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.8);
   width: calc(min(90vw, 60vh) + min(max(0.5vw, 1.5px), 3px) * 6);
   aspect-ratio: 1/1;
   background-color: #fff;
   border-radius: 50%;
   border: min(max(0.5vw, 1.5px), 3px) solid #000;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 
   z-index: 2;
+}
+
+.show-mechanical-clock .mechanical-clock-face-border {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .mechanical-clock-base {
@@ -729,9 +842,13 @@ body {
   bottom: 0%;
   transform: translate(-50%, 0%);
   width: min(90vw, 60vh);
-  height: min(max(3.33vw, 12px), 20px);
+  height: 0%;
   background-color: #000;
-  /* border: min(max(0.225vw, 1.5px), 3px) solid #000; */
+  transition: height 0.5s ease-in-out;
+}
+
+.show-mechanical-clock .mechanical-clock-base {
+  height: min(max(3.33vw, 12px), 20px);
 }
 
 .mechanical-clock-column {
@@ -740,8 +857,15 @@ body {
   bottom: 0%;
   transform: translate(-50%, 0%);
   width: min(max(20px, 90px), 120px);
-  height: 100%;
+  height: 0%;
+  opacity: 0;
   border: min(max(0.5vw, 1.5px), 3px) solid #000;
+  transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.show-mechanical-clock .mechanical-clock-column {
+  height: 100%;
+  opacity: 1;
 }
 
 .mechanical-clock-horizontal {
@@ -749,21 +873,36 @@ body {
   left: 50%;
   top: 5vh;
   transform: translate(-50%, 0%);
-  width: min(90vw, 60vh);
+  width: 0%;
   height: min(max(3.33vw, 12px), 20px);
   background-color: #fff;
+  opacity: 0;
   border-top: min(max(0.5vw, 1.5px), 3px) solid #000;
   border-bottom: min(max(0.5vw, 1.5px), 3px) solid #000;
+
+  transition: width 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.show-mechanical-clock .mechanical-clock-horizontal {
+  width: min(90vw, 60vh);
+  opacity: 1;
 }
 
 .mechanical-clock-horizontal-weight-left,
 .mechanical-clock-horizontal-weight-right {
   position: absolute;
-  top: calc(100% + min(max(3.33vw, 12px), 20px));
+  top: 100%;
   width: min(max(5.33vw, 24px), 32px);
-  aspect-ratio: 1/2;
+  height: 0%;
   background-color: #fff;
   border: min(max(0.5vw, 1.5px), 3px) solid #000;
+  transition: top 0.5s ease-in-out, height 0.5s ease-in-out;
+}
+
+.show-mechanical-clock .mechanical-clock-horizontal-weight-left,
+.show-mechanical-clock .mechanical-clock-horizontal-weight-right {
+  top: calc(100% + min(max(3.33vw, 12px), 20px));
+  height: min(max(10.67vw, 48px), 64px);
 }
 
 .mechanical-clock-horizontal-weight-left::before,
@@ -774,8 +913,14 @@ body {
   left: 50%;
   transform: translate(-50%, 0%);
   width: min(max(0.5vw, 1.5px), 3px);
-  height: min(max(3.33vw, 12px), 20px);
+  height: 0%;
   background-color: #000;
+  transition: height 0.5s ease-in-out;
+}
+
+.show-mechanical-clock .mechanical-clock-horizontal-weight-left::before,
+.show-mechanical-clock .mechanical-clock-horizontal-weight-right::before {
+  height: min(max(3.33vw, 12px), 20px);
 }
 
 .mechanical-clock-horizontal-weight-left {
@@ -903,14 +1048,23 @@ body {
 
 .mechanical-clock-bottom-gear {
   position: fixed;
-  top: calc(50% + min(90vw, 60vh) * 0.4);
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.8);
   width: calc(min(90vw, 60vh) * 0.5);
   aspect-ratio: 1/1;
   fill: #fff;
+  opacity: 0;
+  transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
 
   z-index: 1;
+}
+
+.show-mechanical-clock .mechanical-clock-bottom-gear {
+  top: calc(50% + min(90vw, 60vh) * 0.4);
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 /* Pendulum Clock */
@@ -920,26 +1074,37 @@ body {
   left: 0%;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  pointer-events: none;
+}
+
+.show-pendulum-clock {
   background-color: #fff;
-  display: none;
 }
 
 .show-pendulum-clock .pendulum-clock {
-  display: flex;
+  pointer-events: auto;
 }
 
 .pendulum-clock-face {
   position: fixed;
   top: 10vh;
   left: 50%;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%) scale(0.8);
   width: min(80vw, 40vh);
   aspect-ratio: 1/1;
   border-radius: 50%;
   border: min(max(0.75vw, 1.5px), 3px) solid #000;
   background-color: #fff;
+  opacity: 0;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 
   z-index: 2;
+}
+
+.show-pendulum-clock .pendulum-clock-face {
+  transform: translate(-50%, 0%) scale(1);
+  opacity: 1;
 }
 
 .pendulum-clock-face-border {
@@ -947,14 +1112,22 @@ body {
   position: fixed;
   top: calc(10vh - min(max(0.75vw, 1.5px), 3px) * 3);
   left: 50%;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%, 0%) scale(0.8);
   width: calc(min(80vw, 40vh) + min(max(0.75vw, 1.5px), 3px) * 6);
   aspect-ratio: 1/1;
   background-color: #fff;
   border-radius: 50%;
   border: min(max(0.75vw, 1.5px), 3px) solid #000;
+  opacity: 0;
+  transform: translate(-50%, 0%) scale(0.8);
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 
   z-index: 2;
+}
+
+.show-pendulum-clock .pendulum-clock-face-border {
+  transform: translate(-50%, 0%) scale(1);
+  opacity: 1;
 }
 
 .pendulum-clock-face-mark {
@@ -1055,12 +1228,26 @@ body {
 
 .pendulum-clock-weight-left {
   left: calc(50% - min(80vw, 40vh) / 9);
-  height: calc(50vh - min(80vw, 40vh) / 2 + min(max(0.75vw, 1.5px), 3px));
+  height: 0%;
+  opacity: 0;
+  transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 .pendulum-clock-weight-right {
-  height: calc(70vh - min(80vw, 40vh) / 2 + min(max(0.75vw, 1.5px), 3px));
+  height: 0%;
   right: calc(50% - min(80vw, 40vh) / 9);
+  opacity: 0;
+  transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.show-pendulum-clock .pendulum-clock-weight-left {
+  opacity: 1;
+  height: calc(50vh - min(80vw, 40vh) / 2 + min(max(0.75vw, 1.5px), 3px));
+}
+
+.show-pendulum-clock .pendulum-clock-weight-right {
+  opacity: 1;
+  height: calc(70vh - min(80vw, 40vh) / 2 + min(max(0.75vw, 1.5px), 3px));
 }
 
 .pendulum-clock-weight-left::after,
@@ -1074,6 +1261,13 @@ body {
   aspect-ratio: 1/2;
   background-color: #fff;
   border: min(max(0.75vw, 1.5px), 3px) solid #000;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.show-pendulum-clock .pendulum-clock-weight-left::after,
+.show-pendulum-clock .pendulum-clock-weight-right::after {
+  opacity: 1;
 }
 
 .pendulum-clock-pendulum {
@@ -1082,13 +1276,21 @@ body {
   left: 50%;
   transform: translate(-50%, 0%);
   width: min(max(2.5vw, 6px), 10px);
-  height: calc(70vh - min(80vw, 40vh) / 2 + min(max(0.75vw, 1.5px), 3px));
+  height: 0%;
   background-color: #fff;
   transform-origin: top center;
   border-left: min(max(0.75vw, 1.5px), 3px) solid #000;
   border-right: min(max(0.75vw, 1.5px), 3px) solid #000;
+  opacity: 0;
+  transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out;
 
   animation: pendulum-animation 1s ease-in-out infinite;
+}
+
+.show-pendulum-clock .pendulum-clock-pendulum {
+  height: calc(70vh - min(80vw, 40vh) / 2 + min(max(0.75vw, 1.5px), 3px));
+
+  opacity: 1;
 }
 
 .pendulum-clock-pendulum::after {
@@ -1125,10 +1327,10 @@ body {
   left: 0%;
   width: 100vw;
   height: 100vh;
-  background-color: #000;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
 }
 
 .show-nixie-clock {
@@ -1136,16 +1338,25 @@ body {
 }
 
 .show-nixie-clock .nixie-clock {
+  pointer-events: auto;
+}
+
+.nixie-clock-main-container {
+  width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .nixie-clock-main {
   position: relative;
   width: 90vw;
+  margin-bottom: min(max(1vw, 3px), 6px);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5vw;
+  gap: 4vw;
 }
 
 .nixie-clock-main::after {
@@ -1159,6 +1370,14 @@ body {
   background-color: #000;
   border-top: min(max(0.5vw, 1.5px), 3px) solid rgba(60, 60, 60, 1);
   border-bottom: min(max(0.5vw, 1.5px), 3px) solid rgba(60, 60, 60, 1);
+  opacity: 0;
+  width: 0%;
+  transition: width 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.show-nixie-clock .nixie-clock-main::after {
+  width: 100vw;
+  opacity: 1;
 }
 
 .nixie-clock-display {
@@ -1168,6 +1387,14 @@ body {
 
   border-radius: min(max(2.5vw, 8px), 15px) min(max(2.5vw, 8px), 15px) 0% 0%;
   border: min(max(0.5vw, 1.5px), 3px) solid rgba(60, 60, 60, 1);
+  opacity: 0;
+  translate: 0% 100%;
+  transition: opacity 0.5s ease-in-out, translate 0.5s ease-in-out;
+}
+
+.show-nixie-clock .nixie-clock-display {
+  opacity: 1;
+  translate: 0% 0%;
 }
 
 .nixie-clock-display::after {
@@ -1261,8 +1488,8 @@ body {
 .nixie-6-8-on #nixie-clock-digit-6-8,
 .nixie-6-9-on #nixie-clock-digit-6-9 {
   color: rgba(var(--nixie-orange), 1);
-  text-shadow: 0 0 10px rgba(var(--nixie-orange), 1),
-    0 0 20px rgba(var(--nixie-orange), 1), 0 0 30px rgba(var(--nixie-orange), 1);
+  text-shadow: 0 0 10px rgba(var(--nixie-red), 1),
+    0 0 20px rgba(var(--nixie-red), 1), 0 0 30px rgba(var(--nixie-red), 1);
   z-index: 10;
 }
 
@@ -1273,10 +1500,10 @@ body {
   left: 0%;
   width: 100vw;
   height: 100vh;
-  background-color: #000;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
 }
 
 .show-led-clock {
@@ -1284,7 +1511,7 @@ body {
 }
 
 .show-led-clock .led-clock {
-  display: flex;
+  pointer-events: auto;
 }
 
 .led-clock-main {
@@ -1294,6 +1521,12 @@ body {
   display: flex;
   align-items: center;
   gap: 1.5vw;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.show-led-clock .led-clock-main {
+  opacity: 1;
 }
 
 .led-clock-display-container {
@@ -1454,14 +1687,18 @@ body {
   left: 0%;
   width: 100vw;
   height: 100vh;
-  background-color: #fff;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
+}
+
+.show-gui-clock {
+  background-color: #fff;
 }
 
 .show-gui-clock .gui-clock {
-  display: flex;
+  pointer-events: auto;
 }
 
 .gui-clock-mac {
@@ -1474,8 +1711,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  translate: 0% -10%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, translate 0.5s ease-in-out;
 
   z-index: 1;
+}
+
+.show-gui-clock .gui-clock-mac {
+  opacity: 1;
+  translate: 0% 0%;
 }
 
 .gui-clock-mac::after {
@@ -1512,6 +1757,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: scale(0);
+  transform-origin: center center;
+  transition: transform 0.5s ease-in-out;
+}
+
+.show-gui-clock .gui-clock-screen-window {
+  transform: scale(1);
 }
 
 .gui-clock-screen-window-bar {
@@ -1611,14 +1863,18 @@ body {
   left: 0%;
   width: 100vw;
   height: 100vh;
-  background-color: #fff;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
+}
+
+.show-data-clock {
+  background-color: #fff;
 }
 
 .show-data-clock .data-clock {
-  display: flex;
+  pointer-events: auto;
 }
 
 .data-clock-phone {
@@ -1630,6 +1886,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  translate: 0% 10%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, translate 0.5s ease-in-out;
+}
+
+.show-data-clock .data-clock-phone {
+  opacity: 1;
+  translate: 0% 0%;
 }
 
 .data-clock-phone-screen {
@@ -1751,10 +2016,10 @@ body {
   left: 0%;
   width: 100vw;
   height: 100vh;
-  background-color: #000;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
 }
 
 .show-quantum-clock {
@@ -1762,7 +2027,7 @@ body {
 }
 
 .show-quantum-clock .quantum-clock {
-  display: flex;
+  pointer-events: auto;
 }
 
 .quantum-clock-main {
@@ -1781,4 +2046,13 @@ body {
   color: #fff;
   text-align: center;
   line-height: 0.8;
+
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.show-quantum-clock .quantum-clock-digit {
+  transform: scale(1);
+  opacity: 1;
 }
