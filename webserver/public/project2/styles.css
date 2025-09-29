@@ -97,6 +97,9 @@ body {
 
 /* Sundial */
 .sundial {
+  position: fixed;
+  top: 0%;
+  left: 0%;
   width: 100vw;
   height: 100vh;
   background-color: #fff;
@@ -280,6 +283,9 @@ body {
 
 /* Water Clock */
 .water-clock {
+  position: fixed;
+  top: 0%;
+  left: 0%;
   width: 100vw;
   height: 100vh;
   background-color: #fff;
@@ -507,6 +513,9 @@ body {
 
 /* Candle Clock */
 .candle-clock {
+  position: fixed;
+  top: 0%;
+  left: 0%;
   width: 100vw;
   height: 100vh;
   background-color: #000;
@@ -654,7 +663,9 @@ body {
 
 /* Mechanical Clock */
 .mechanical-clock {
-  position: relative;
+  position: fixed;
+  top: 0%;
+  left: 0%;
   width: 100vw;
   height: min(100vh, 150vw);
   background-color: #fff;
@@ -886,6 +897,9 @@ body {
 
 /* Pendulum Clock */
 .pendulum-clock {
+  position: fixed;
+  top: 0%;
+  left: 0%;
   width: 100vw;
   height: 100vh;
   background-color: #fff;
@@ -1088,6 +1102,9 @@ body {
 
 /* Nixie Clock */
 .nixie-clock {
+  position: fixed;
+  top: 0%;
+  left: 0%;
   width: 100vw;
   height: 100vh;
   background-color: #000;
@@ -1233,6 +1250,9 @@ body {
 
 /* LED Clock */
 .led-clock {
+  position: fixed;
+  top: 0%;
+  left: 0%;
   width: 100vw;
   height: 100vh;
   background-color: #000;
@@ -1411,6 +1431,9 @@ body {
 
 /* GUI Clock */
 .gui-clock {
+  position: fixed;
+  top: 0%;
+  left: 0%;
   width: 100vw;
   height: 100vh;
   background-color: #fff;
@@ -1565,6 +1588,9 @@ body {
 
 /* Data Clock */
 .data-clock {
+  position: fixed;
+  top: 0%;
+  left: 0%;
   width: 100vw;
   height: 100vh;
   background-color: #fff;
@@ -1702,6 +1728,9 @@ body {
 
 /* Quantum Clock */
 .quantum-clock {
+  position: fixed;
+  top: 0%;
+  left: 0%;
   width: 100vw;
   height: 100vh;
   background-color: #000;
