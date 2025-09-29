@@ -311,7 +311,9 @@ body {
 }
 
 .water-clock-left {
-  position: relative;
+  position: fixed;
+  bottom: 0%;
+  right: calc(50% - min(max(1.5vw, 4px), 6px));
   width: min(40vw, 20vh);
   aspect-ratio: 1/2;
   background-color: transparent;
@@ -427,7 +429,9 @@ body {
 }
 
 .water-clock-right {
-  position: relative;
+  position: fixed;
+  bottom: 0%;
+  left: 50%;
   width: min(40vw, 20vh);
   height: 100vh;
   background-color: transparent;
