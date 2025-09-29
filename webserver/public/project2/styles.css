@@ -335,12 +335,16 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  aspect-ratio: 2/1;
   background-color: #fff;
   border: min(max(0.75vw, 4px), 6px) solid #000;
   transition: top 0.5s ease-in-out;
 
   z-index: 2;
+}
+
+.water-clock-floating-base-inner {
+  width: 100%;
+  aspect-ratio: 2/1;
 }
 
 .water-clock-pointer {
