@@ -635,6 +635,7 @@ body {
 
 .candle-clock-candle-body {
   background-color: #fff;
+  border: min(max(0.5vw, 1.5px), 3px) solid #fff;
   border-radius: min(max(2vw, 8px), 12px) min(max(2vw, 8px), 12px) 0% 0%;
   width: 100%;
   height: 100%;
@@ -642,7 +643,7 @@ body {
   z-index: 10;
 }
 
-.candle-clock-candle-body::after {
+/* .candle-clock-candle-body::after {
   content: "";
   position: absolute;
   right: min(max(1vw, 4px), 6px);
@@ -651,7 +652,7 @@ body {
   height: calc(100% - min(max(2vw, 8px), 12px));
   border-radius: min(max(1vw, 4px), 6px) min(max(1vw, 4px), 6px) 0% 0%;
   background-color: rgba(0, 0, 0, 0.1);
-}
+} */
 
 .candle-clock-candle-flame-1-container,
 .candle-clock-candle-flame-2-container,
