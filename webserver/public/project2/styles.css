@@ -77,8 +77,12 @@
   --sundial-brown-border: 217, 171, 109;
   --sundial-brown-text: 165, 123, 67;
   --sundial-brown-shadow: 68, 53, 32; */
-
   --water-blue: 70, 131, 255;
+  --candle-red: 234, 43, 31;
+  --candle-orange: 237, 174, 73;
+  --candle-yellow: 249, 223, 116;
+  /* --mechanical-beige: 243, 237, 229;
+  --mechanical-beige-dark: 220, 194, 137; */
   --nixie-orange: 255, 184, 110;
   --nixie-red: 222, 80, 35;
   --mac-beige: 230, 219, 190;
@@ -638,6 +642,17 @@ body {
   z-index: 10;
 }
 
+.candle-clock-candle-body::after {
+  content: "";
+  position: absolute;
+  right: min(max(1vw, 4px), 6px);
+  top: min(max(2vw, 8px), 12px);
+  width: 25%;
+  height: calc(100% - min(max(2vw, 8px), 12px));
+  border-radius: min(max(1vw, 4px), 6px) min(max(1vw, 4px), 6px) 0% 0%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .candle-clock-candle-flame-1-container,
 .candle-clock-candle-flame-2-container,
 .candle-clock-candle-flame-3-container {
@@ -672,10 +687,15 @@ body {
   border-radius: 50% 10% 50% 0%;
   transform-origin: center center;
   rotate: -45deg;
-  border: min(max(0.5vw, 1.5px), 3px) solid #fff;
-  background-color: #000;
+  border: min(max(0.5vw, 1.5px), 3px) solid rgba(var(--candle-red), 1);
+  background-color: rgba(var(--candle-red), 1);
 
   z-index: 1;
+}
+
+.candle-clock-candle-flame-2 {
+  border: min(max(0.5vw, 1.5px), 3px) solid rgba(var(--candle-orange), 1);
+  background-color: rgba(var(--candle-orange), 1);
 }
 
 .candle-clock-candle-flame-1-container {
@@ -685,7 +705,8 @@ body {
 }
 
 .candle-clock-candle-flame-1 {
-  background-color: #fff;
+  border: min(max(0.5vw, 1.5px), 3px) solid rgba(var(--candle-yellow), 1);
+  background-color: rgba(var(--candle-yellow), 1);
 }
 
 .candle-clock-candle-flame-2-container {
