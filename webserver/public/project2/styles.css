@@ -2088,7 +2088,6 @@ body {
 }
 
 .quantum-clock-main {
-  height: 100%;
   display: flex;
   cursor: pointer;
   justify-content: center;
