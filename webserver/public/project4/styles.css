@@ -1,0 +1,180 @@
+@font-face {
+  font-family: "SFMono";
+  src: url("/assets/SFMono-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "SFMono";
+  src: url("/assets/SFMono-Medium.woff2") format("woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "SFMono";
+  src: url("/assets/SFMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+
+:root {
+  --primary: #000;
+  --primary-background: #fff;
+  --primary-50: rgba(0, 0, 0, 0.5);
+  --primary-01: rgba(0, 0, 0, 0.1);
+  --primary-005: rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #fff;
+    --primary-background: #000;
+    --primary-50: rgba(255, 255, 255, 0.5);
+    --primary-01: rgba(255, 255, 255, 0.15);
+    --primary-005: rgba(255, 255, 255, 0.1);
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  background-color: var(--primary-background);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100vw - 40px);
+  height: auto;
+  min-height: calc(100vh - 106px);
+  padding: 20px;
+  padding-bottom: 86px;
+  gap: 10px;
+  max-width: 600px;
+}
+
+.post {
+  position: relative;
+  width: calc(100% - 30px);
+  color: var(--primary);
+  padding: 10px;
+  padding-left: 15px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  font-family: "SFMono", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  outline: 2px solid var(--primary-01);
+  outline-offset: -2px;
+}
+
+.post-content {
+  margin: 0;
+  overflow: scroll;
+  scrollbar-width: none;
+  -webkit-scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.post-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  line-height: 150%;
+  color: var(--primary-50);
+  white-space: nowrap;
+}
+
+.delete-button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 6px;
+}
+
+.delete-button:hover .delete-button-icon {
+  fill: var(--primary);
+}
+
+.delete-button-icon {
+  width: 10px;
+  height: 10px;
+  fill: var(--primary-50);
+  transition: fill 0.25s ease-in-out;
+}
+
+.input-section {
+  position: fixed;
+  bottom: 20px;
+  width: calc(100vw - 40px);
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 12px;
+  max-width: 600px;
+  outline: 2px solid var(--primary);
+  background-color: var(--primary-background);
+}
+
+.new-post-input {
+  width: 100%;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  color: var(--primary);
+  font-family: "SFMono", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+::placeholder {
+  color: var(--primary);
+  font-family: "SFMono", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  opacity: 0.3;
+}
+
+.submit-button {
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+  border: none;
+  background-color: var(--primary-005);
+  padding: 10px;
+  border-radius: 7px;
+  transition: background-color 0.25s ease-in-out;
+}
+
+.submit-button:hover {
+  background-color: var(--primary);
+}
+
+.submit-button-icon {
+  width: 14px;
+  height: 14px;
+  fill: var(--primary);
+  transition: fill 0.25s ease-in-out;
+}
+
+.submit-button:hover .submit-button-icon {
+  fill: var(--primary-background);
+}

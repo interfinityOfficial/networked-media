@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project 4</title>
+    <link rel="icon" href="/assets/icon.png" />
+    <link rel="stylesheet" href="/project4/styles.css" />
+  </head>
+  <body>
+    <div class="posts" id="posts">
+      <% posts.forEach(post => { %>
+      <div class="post" id="post-<%= post.id %>">
+        <div class="post-content"><%= post.content %></div>
+        <div class="post-timestamp">
+          <%= (new Date(post.createdAt)).toLocaleDateString('en-US', { year:
+          'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute:
+          '2-digit' }) %>
+          <button class="delete-button" onclick="deletePost(<%= post.id %>)">
+            <svg
+              class="delete-button-icon"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 16.2734 15.928"
+            >
+              <g>
+                <rect height="15.928" opacity="0" width="16.2734" x="0" y="0" />
+                <path
+                  d="M13.7728 0.373534L0.349341 13.8001C-0.113117 14.2595-0.122883 15.0898 0.358657 15.5678C0.843303 16.0427 1.67988 16.0334 2.13613 15.5771L15.5596 2.15366C16.0314 1.68188 16.0349 0.867046 15.5472 0.385955C15.0594-0.101795 14.2544-0.111561 13.7728 0.373534ZM15.5596 13.7939L2.13613 0.370428C1.67677-0.0924792 0.839748-0.111561 0.358657 0.38285C-0.119328 0.870601-0.110012 1.6912 0.349341 2.15055L13.7728 15.574C14.2446 16.0458 15.0661 16.0494 15.5472 15.5647C16.0283 15.077 16.0314 14.2688 15.5596 13.7939Z"
+                />
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+
+    <div class="input-section">
+      <input
+        type="text"
+        name="New Post"
+        placeholder="New Post"
+        class="new-post-input"
+        id="new-post-input"
+      />
+      <button type="submit" class="submit-button" id="submit-button">
+        <svg
+          class="submit-button-icon"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 15.7219 18.6087"
+        >
+          <g>
+            <rect height="18.6087" opacity="0" width="15.7219" x="0" y="0" />
+            <path
+              d="M1.1597 8.84288C1.51519 8.84288 1.81167 8.69954 2.02647 8.47808L4.2313 6.29058L7.67206 2.36692L11.123 6.29058L13.3341 8.47808C13.5524 8.69954 13.8454 8.84288 14.2009 8.84288C14.8661 8.84288 15.3606 8.35067 15.3606 7.6672C15.3606 7.34277 15.239 7.04764 14.9851 6.79021L8.58145 0.376815C8.34622 0.134921 8.01292 0 7.67872 0C7.34453 0 7.00812 0.134921 6.776 0.376815L0.379021 6.79021C0.128261 7.04764 0 7.34277 0 7.6672C0 8.35067 0.494411 8.84288 1.1597 8.84288ZM7.67872 18.6087C8.40081 18.6087 8.89256 18.105 8.89256 17.3612L8.89256 5.78861L8.76075 2.39712C8.76075 1.72696 8.32403 1.28093 7.67872 1.28093C7.03031 1.28093 6.59359 1.72696 6.59359 2.39712L6.46178 5.78861L6.46178 17.3612C6.46178 18.105 6.95664 18.6087 7.67872 18.6087Z"
+            />
+          </g>
+        </svg>
+      </button>
+    </div>
+    <script src="/project4/script.js"></script>
+  </body>
+</html>
