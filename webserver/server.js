@@ -1,5 +1,6 @@
 // Importing the libraries
 const express = require('express');
+const cors = require('cors');
 const { IP2Location } = require("ip2location-nodejs");
 const { PrismaClient } = require('@prisma/client');
 const ejs = require('ejs');
@@ -26,7 +27,7 @@ app.set('trust proxy', true);
 app.set('view engine', 'ejs');
 
 // Project 4 Page
-app.get('/project4/', async (req, res) => {
+app.get('/project4/', cors(), async (req, res) => {
   const posts = await prisma.post.findMany();
   res.render('project4', { posts: posts });
 });
