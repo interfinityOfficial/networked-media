@@ -66,4 +66,4 @@ async function main() {
     }
 }
 
-setInterval(main, 1 * 60 * 60 * 1000);
+setInterval(main, 4 * 60 * 60 * 1000);
